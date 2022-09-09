@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "node server/server.js",
-    "build": "yarn install && yarn build"
+    "build": "yarn install --force && yarn build"
   },
   "eslintConfig": {
     "extends": [
