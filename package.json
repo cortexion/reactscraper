@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "node server/server.js",
-    "build": "yarn install --frozen-lockfile && yarn build"
+    "build": "yarn install && yarn build"
   },
   "eslintConfig": {
     "extends": [
