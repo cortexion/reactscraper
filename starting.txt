@@ -1,4 +1,4 @@
-cd my-app
+cd reactscraper
 local:
 npm start
 
