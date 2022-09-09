@@ -18,7 +18,7 @@
   },
   "scripts": {
     "start": "node server/server.js",
-    "build": "yarn install && yarn build",
+    "build": "yarn install --frozen-lockfile && yarn build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
