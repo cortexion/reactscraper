@@ -19,9 +19,6 @@ function App() {
     }, reason => {
       console.error(reason.message); // Error!
     });
-    return () => {
-      console.log("This will be logged on unmount");
-    }
   }, [])
 
   const getProducts = async (areaName) => {
@@ -58,21 +55,21 @@ function App() {
             <li><Link to="/keski-suomi">Keski-Suomi</Link></li>
             <li><Link to="/uusimaa">Uusimaa</Link></li>
             <li><Link to="/varsinais-suomi">Varsinais-Suomi</Link></li>
-            <Routes>
-              <Route
-                path="/"
-                element={<Area
-                  areaName='Keski-Suomi'
-                  items={KsItems}
-                  setItems={setKsItems}
-                />} />
-            </Routes>
           </div> : <div style={{ border: '1px solid lightGray', height: '130px', maxWidth: '800px' }}>
             <img src={loading} alt='loading' style={{ height: '130px', width: '130px', display: 'block', margin: 'auto' }} />
           </div>}
         </ul>
       </nav>
       <Routes>
+        {doneLoading ? <Route
+          index
+          element={<Area
+            areaName='Keski-Suomi'
+            items={KsItems}
+            setItems={setKsItems}
+          />} /> : <Route
+          index
+          element={<></>} />}
         <Route
           path="/keski-suomi"
           element={<Area

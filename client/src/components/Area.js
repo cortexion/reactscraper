@@ -7,9 +7,7 @@ const Area = ({ areaName, items, setItems }) => {
         }
         setCurrentArea(areaName);
 
-        return () => {
-            console.log("This will be logged on unmount");
-        }
+        return () => { }
     }, [areaName, items])
 
     const [currentArea, setCurrentArea] = React.useState('');
