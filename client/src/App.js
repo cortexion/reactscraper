@@ -17,7 +17,7 @@ function App() {
       setVsItems(values[2]);
       setDoneLoading(true);
     }, reason => {
-      console.error(reason.message); // Error!
+      console.error(reason.message);
     });
   }, [])
 

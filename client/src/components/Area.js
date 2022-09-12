@@ -34,7 +34,7 @@ const Area = ({ areaName, items, setItems }) => {
                                 <div style={{ marginTop: '5px' }}>
                                     {product.images.map((img, idx) => {
                                         return (
-                                            <a href={img} key={idx}><img src={img} style={{ marginLeft: '2px', border: '1px solid black', height: '50px', width: '50px', display: 'inline-block' }} /></a>
+                                            <a href={img} key={idx}><img src={img} alt='product' style={{ marginLeft: '2px', border: '1px solid black', height: '50px', width: '50px', display: 'inline-block' }} /></a>
                                         )
                                     })}
                                 </div>
