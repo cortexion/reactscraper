@@ -15,7 +15,7 @@ const Area = ({ areaName, items, setItems }) => {
 
     return (<div>
         <h2 style={{ marginBottom: '0px' }}>{currentArea}</h2>
-        <p style={{ margin: '0px' }}>Viimeisimmät 5 tavaraa:</p>
+        <p style={{ margin: '0px' }}>The latest items:</p>
         {products.map((product, idx) => {
             return (
                 <div key={idx}>
@@ -27,8 +27,8 @@ const Area = ({ areaName, items, setItems }) => {
                                 <div style={{ maxWidth: '650px', marginLeft: '10px', display: 'inline-block', position: 'absolute', paddingRight: '30px' }}>
                                     <b>{product.name}</b><br />
                                     <p style={{ margin: '0px', border: '0px solid black', minHeight: '60px', maxHeight: '60px', overflowY: 'scroll' }}>{product.desc}</p>
-                                    <a href={product.url}>Linkki sivulle</a>
-                                    <p style={{ margin: '0px', display: 'inline', marginLeft: '2px' }}> {product.images.length} kuva(a):</p>
+                                    <a href={product.url}>Link to the page</a>
+                                    <p style={{ margin: '0px', display: 'inline', marginLeft: '2px' }}> {product.images.length} other photo(s):</p>
                                 </div>
 
                                 <div style={{ marginTop: '5px' }}>

@@ -11,7 +11,7 @@ import {
 
 function App() {
   React.useEffect(() => {
-    Promise.all([getProducts('keski-suomi'), getProducts('uusimaa'), getProducts('varsinais-suomi')]).then(function (values) {
+    Promise.all([getProducts('keski-suomi'), getProducts('pirkanmaa'), getProducts('varsinais-suomi')]).then(function (values) {
       setKsItems(values[0]);
       setUmItems(values[1]);
       setVsItems(values[2]);
@@ -48,12 +48,12 @@ function App() {
       }}>
         <small style={{ margin: '0px', padding: '5px' }}>(Made by EA)</small>
       </div>
-      <h1>Valitse alue, miltä haluat etsiä ilmaista tavaraa:</h1>
+      <h1>Select area for free stuff:</h1>
       <nav>
         <ul style={{ padding: '0px' }}>
           {doneLoading ? <div style={{ paddingLeft: '15px' }}>
             <li><Link to="/keski-suomi">Keski-Suomi</Link></li>
-            <li><Link to="/uusimaa">Uusimaa</Link></li>
+            <li><Link to="/pirkanmaa">Pirkanmaa</Link></li>
             <li><Link to="/varsinais-suomi">Varsinais-Suomi</Link></li>
           </div> : <div style={{ border: '1px solid lightGray', height: '130px', maxWidth: '800px' }}>
             <img src={loading} alt='loading' style={{ height: '130px', width: '130px', display: 'block', margin: 'auto' }} />
@@ -78,9 +78,9 @@ function App() {
             setItems={setKsItems}
           />} />
         <Route
-          path="/uusimaa"
+          path="/pirkanmaa"
           element={<Area
-            areaName='Uusimaa'
+            areaName='Pirkanmaa'
             items={UmItems}
             setItems={setUmItems}
           />} />
