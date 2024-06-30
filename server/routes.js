@@ -41,36 +41,54 @@ module.exports = app => {
 
                 //console.log(table[0].children[2].children[4].children);
                 const articles = Object.values(cheerio('.col-span-2 > section > div:nth-of-type(4) > article', html));
+                
                 //console.log(articles);
                 const urls = articles.map((obj, index) => {
                     if (index <= 5 && obj.name === 'article') {
-                        const href = Object.values(cheerio('div:nth-of-type(4) > h2 > a', obj))[0];
-                        const hrefname = cheerio('div:nth-of-type(4) > h2 > a', obj)[0].children[1].data;
-                        //console.log('hrefname: ', hrefname);
-                        const hrefurl = cheerio('div:nth-of-type(4) > h2 > a', obj)[0].attribs.href;
-                        //console.log('hrefurl: ', hrefurl);
+                        console.log('true!')                        
 
-                        return object = {
-                            "name": hrefname,
-                            "url": hrefurl
+                        const anchorElement = cheerio('div:nth-of-type(3) > h2 > a', obj);
+                        console.log('anchorElement.length: ', anchorElement.length)
+                
+                        if (anchorElement.length > 0) {
+                            const hrefname = anchorElement.text();
+                            const hrefurl = anchorElement.attr('href');
+
+                            
+                
+                            return {
+                                "name": hrefname,
+                                "url": hrefurl
+                            };
+                        } else {
+                            return null;
                         }
                     } else {
+                        console.log('not true!')
                         return null;
                     }                
-                }).filter(obj => obj !== null);
+                }).filter(url => url !== null);
                 console.log('urls: ', urls);
 
                 const urls1 = articles.reduce((acc, obj, index) => {
-                    if (acc.length >= 5 || obj.name !== 'article') return acc;                    
-                    const hrefname = cheerio('div:nth-of-type(4) > h2 > a', obj)[0].children[1].data;
-                    const hrefurl = cheerio('div:nth-of-type(4) > h2 > a', obj)[0].attribs.href;                
-                    return [
-                        ...acc,
-                        {
-                            "name": hrefname,
-                            "url": hrefurl
-                        }
-                    ];
+                    if (acc.length >= 5 || obj.name !== 'article') return acc;
+                    
+                    const anchorElement = cheerio('div:nth-of-type(3) > h2 > a', obj);
+                
+                    if (anchorElement.length > 0) {
+                        const hrefname = anchorElement.text();
+                        const hrefurl = anchorElement.attr('href');
+                        
+                        return [
+                            ...acc,
+                            {
+                                "name": hrefname,
+                                "url": hrefurl
+                            }
+                        ];
+                    } else {
+                        return acc;
+                    }
                 }, []);
                 //console.log('urls1: ', urls1);
 
@@ -78,14 +96,21 @@ module.exports = app => {
                 let count = 0;
                 for (const obj of articles) {
                     if (count >= 5 || obj.name !== 'article') continue;
-                    const hrefname = cheerio('div:nth-of-type(4) > h2 > a', obj)[0].children[1].data;
-                    const hrefurl = cheerio('div:nth-of-type(4) > h2 > a', obj)[0].attribs.href;
-                    urls2.push({
-                        "name": hrefname,
-                        "url": hrefurl
-                    });
-                    count++;
+                
+                    const anchorElement = cheerio('div:nth-of-type(3) > h2 > a', obj);
+                
+                    if (anchorElement.length > 0) {
+                        const hrefname = anchorElement.text();
+                        const hrefurl = anchorElement.attr('href');
+                        
+                        urls2.push({
+                            "name": hrefname,
+                            "url": hrefurl
+                        });
+                        count++;
+                    }
                 }
+                
                 //console.log('urls2: ', urls2);
 
 
